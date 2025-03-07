@@ -89,7 +89,7 @@ function processWeatherData(data) {
     
         updateHTML(dailyTemps);
     } catch (error) {
-        console.error("Error processing weather data:", error);
+        console.error("Error processing weather data");
     }
 }
 
