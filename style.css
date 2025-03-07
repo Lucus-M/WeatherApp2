@@ -1,0 +1,54 @@
+/*
+    Name: Lucus Mulhorn
+    Date: 1/28/2025
+    Purpose: Styling for weather page
+
+*/
+
+html, body{
+    height: 100%;
+    margin: 0;
+    font-family:'Courier New', Courier, monospace; 
+}
+
+.centered{
+    left: 50%;
+    width: auto;
+    max-width: none;
+    transform: translate(-50%); 
+}
+
+#inputs{
+    margin-top: 1em;
+    position:absolute;
+}
+
+#dayPanelContainer{
+    position: absolute;
+    bottom: 0;
+    height: 90%;
+    margin: auto;
+}
+
+.dayPanel{
+    display: inline-block;
+    width: 13em;
+    background-image: linear-gradient(to bottom, #caffef, #4d4aff); 
+    text-align: center;
+    height: 95%;
+    bottom: 0;
+    border-radius: 50px;
+    padding-left: 1em;
+    padding-right: 1em;
+    box-sizing: border-box;
+}
+
+.day{
+    position:relative;
+}
+
+
+img{
+    width: 65%;
+    image-rendering: crisp-edges;
+}
