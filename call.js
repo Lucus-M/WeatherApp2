@@ -48,7 +48,10 @@ function getWeatherData() {
     try {
         let zip = document.getElementById("zip").value;
         let country = document.getElementById("country").value;
-
+        
+        zip = encodeURIComponent(zip);
+        country = encodeURIComponent(country);
+        
         if (!isValidInput(zip, country)) {
             return;
         }
