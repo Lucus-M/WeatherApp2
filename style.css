@@ -50,5 +50,6 @@ html, body{
 
 img{
     width: 65%;
-    image-rendering: crisp-edges;
+    -webkit-image-rendering: pixelated;
+    image-rendering: pixelated;
 }
