@@ -1,0 +1,84 @@
+<!--
+    Name: Lucus Mulhorn
+    Date: 1/28/2025
+    Purpose: Displays the weather forecast for three days from a zip code and country code, including day and night weather and temperatures;
+
+-->
+
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Application</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+    <body>
+        <form id="placeholderForm">
+        </form>
+        <div id="inputs" class="centered">
+            <input type="text" id="zip" name="zip" value="ZIP code" form="placeholderForm">
+            <input type="text" id="country" name="country" value="Country code (us, fr, gb)" form="placeholderForm">
+            <button onclick="getWeatherData()">Get Weather Data</button>
+        </div>
+
+        <div id="dayPanelContainer" class="centered">
+            <div class="dayPanel">
+                <h2 class="date">(date)</h2>
+                <div class="day">
+                    <p>Day</p>
+                    <div>
+                        <img class="dayImg" src="img/Default.png">
+                    </div>
+                    <h2 class="dayTemp">(temp)</h2>
+                </div>
+                <div class="night">
+                    <p>Night</p>
+                    <div>
+                        <img class="nightImg" src="img/Default.png">
+                    </div>
+                    <h2 class="nightTemp">(temp)</h2>
+                </div>
+            </div>
+
+            <div class="dayPanel">
+                <h2 class="date">(date)</h2>
+                <div class="day">
+                    <p>Day</p>
+                    <div>
+                        <img class="dayImg" src="img/Default.png">
+                    </div>
+                    <h2 class="dayTemp">(temp)</h2>
+                </div>
+                <div class="night">
+                    <p>Night</p>
+                    <div>
+                        <img class="nightImg" src="img/Default.png">
+                    </div>
+                    <h2 class="nightTemp">(temp)</h2>
+                </div>
+            </div>
+
+            <div class="dayPanel">
+                <h2 class="date">(date)</h2>
+                <div class="day">
+                    <p>Day</p>
+                    <div>
+                        <img class="dayImg" src="img/Default.png">
+                    </div>
+                    <h2 class="dayTemp">(temp)</h2>
+                </div>
+                <div class="night">
+                    <p>Night</p>
+                    <div>
+                        <img class="nightImg" src="img/Default.png">
+                    </div>
+                    <h2 class="nightTemp">(temp)</h2>
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+    <script src="call.js"></script> 
+</html>
