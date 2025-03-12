@@ -50,6 +50,7 @@ html, body{
 
 img{
     width: 65%;
+    /*improve browser support*/
     -webkit-image-rendering: pixelated;
     image-rendering: pixelated;
 }
