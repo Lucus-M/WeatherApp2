@@ -1,5 +1,5 @@
 /*
-    Name: Lucus Mulhorn
+    Name: 
     Date: 1/28/2025
     Purpose: Displays the weather forecast for three days from a zip code and country code,
              including day and night weather and temperatures.
@@ -23,21 +23,25 @@ function toFahrenheit(kelvin) {
 }
 
 // Validate zip code and country code inputs
-function isValidInput(zip, country) {
+function isValidInput(zip) {
     try {
+        zip = zip.trim(); //sanitization
+
+        if (!zip) {
+            alert("Zip and Country fields cannot be empty.");
+            return false;
+        }
+
         const zipPattern = /^\d{5}$/; // Validates a 5-digit zip code
-        const countryPattern = /^[A-Za-z]{2}$/; // Validates a 2-letter country code
         
         if (!zipPattern.test(zip)) {
             alert("Invalid Zip Code. Please enter a 5-digit zip code.");
             return false;
         }
-        if (!countryPattern.test(country)) {
-            alert("Invalid Country Code. Please enter a 2-letter country code.");
-            return false;
-        }
+
         return true;
     } catch (error) {
+        alert("Validation error!")
         console.error("Validation error:", error);
         return false;
     }
@@ -47,16 +51,15 @@ function isValidInput(zip, country) {
 function getWeatherData() {
     try {
         let zip = document.getElementById("zip").value;
-        let country = document.getElementById("country").value;
-        
-        zip = encodeURIComponent(zip);
-        country = encodeURIComponent(country);
-        
-        if (!isValidInput(zip, country)) {
+
+        if (!isValidInput(zip)) {
             return;
         }
 
-        fetch(`http://178.128.148.67/lucus/Weather/weatherdata.php?zip=${zip}&country=${country}`)
+        zip = encodeURIComponent(zip.trim());
+
+        //Application retrieves weather data from PHP file containing API request
+        fetch(`http://178.128.148.67/lucus/Weather/weatherdata.php?zip=${zip}&country=us`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Network response not ok.");
@@ -65,8 +68,12 @@ function getWeatherData() {
                 return response.json();
             })
             .then(data => processWeatherData(data))
-            .catch(error => console.error("There was a problem with the fetch operation:", error));
+            .catch(error => {
+                alert("Unable to fetch weather data. Please try again later.");
+                console.error("There was a problem with the fetch operation:", error);
+            });
     } catch (error) {
+        alert("Weather data retrieval error!")
         console.error("Unexpected error in getWeatherData:", error);
     }
 }
@@ -78,20 +85,22 @@ function processWeatherData(data) {
         
         const forecastList = data.list;
         const dailyTemps = [];
-    
+        const ENTRIES_PER_DAY = 8;
+
         for (let i = 0; i < dates.length; i++) {
-            const dayTemps = {
-                date: forecastList[i * 8].dt_txt.split(" ")[0],
-                dayTemp: forecastList[i * 8].main.temp,
-                nightTemp: forecastList[i * 8 + 4].main.temp,
-                dayCondition: forecastList[i * 8].weather[0].main,
-                nightCondition: forecastList[i * 8 + 4].weather[0].main
+            const dayData = {
+                date: forecastList[i * ENTRIES_PER_DAY].dt_txt.split(" ")[0],
+                dayTemp: forecastList[i * ENTRIES_PER_DAY].main.temp,
+                nightTemp: forecastList[i * ENTRIES_PER_DAY + 4].main.temp,
+                dayCondition: forecastList[i * ENTRIES_PER_DAY].weather[0].main,
+                nightCondition: forecastList[i * ENTRIES_PER_DAY + 4].weather[0].main
             };
-            dailyTemps.push(dayTemps);
+            dailyTemps.push(dayData);
         }
     
         updateHTML(dailyTemps);
     } catch (error) {
+        alert("Error obtaining weather data, please enter a valid zip code.");
         console.error("Error processing weather data");
     }
 }
