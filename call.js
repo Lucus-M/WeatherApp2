@@ -1,6 +1,7 @@
 /*
-    Name: 
+    Name: Lucus Mulhorn
     Date: 1/28/2025
+    Last Updated: 5/6/2025
     Purpose: Displays the weather forecast for three days from a zip code and country code,
              including day and night weather and temperatures.
 */
@@ -15,6 +16,10 @@ const nightTemps = document.getElementsByClassName("nightTemp");
 // Convert Kelvin to Fahrenheit
 function toFahrenheit(kelvin) {
     try {
+        //improved error handling
+        if(isNaN(kelvin) || kelvin === null) {
+            return "N/A";
+        }
         return Math.round((kelvin - 273.15) * 1.8 + 32);
     } catch (error) {
         console.error("Error converting temperature:", error);
@@ -28,7 +33,7 @@ function isValidInput(zip) {
         zip = zip.trim(); //sanitization
 
         if (!zip) {
-            alert("Zip and Country fields cannot be empty.");
+            alert("Zip field cannot be empty.");
             return false;
         }
 
@@ -137,3 +142,11 @@ function logWeatherData(dailyTemps) {
         console.error("Error logging weather data:", error);
     }
 }
+
+module.exports = {
+    toFahrenheit,
+    isValidInput,
+    processWeatherData,
+    updateHTML,
+    logWeatherData
+};

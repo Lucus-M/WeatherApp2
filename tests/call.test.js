@@ -1,6 +1,14 @@
 /**
  * @jest-environment jsdom
  */
+
+/*
+    Name: Lucus Mulhorn
+    Date: 1/28/2025
+    Last Updated: 5/6/2025
+    Purpose: Unit tests for call.js, includes happy and unhappy paths.
+*/
+
 const {
     toFahrenheit,
     isValidInput,
