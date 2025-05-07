@@ -103,6 +103,7 @@ function processWeatherData(data) {
             dailyTemps.push(dayData);
         }
     
+        logWeatherDataToServer(zip, data.city.name);
         updateHTML(dailyTemps);
     } catch (error) {
         alert("Error obtaining weather data, please enter a valid zip code.");
@@ -120,27 +121,26 @@ function updateHTML(dailyTemps) {
             dayTemps[i].innerText = `${toFahrenheit(dailyTemps[i].dayTemp)}°F`;
             nightTemps[i].innerText = `${toFahrenheit(dailyTemps[i].nightTemp)}°F`;
         }
-    
-        logWeatherData(dailyTemps);
     } catch (error) {
         console.error("Error updating HTML:", error);
     }
 }
 
-// Log weather data to console
-function logWeatherData(dailyTemps) {
-    try {
-        dailyTemps.forEach(day => {
-            console.log(`Date: ${day.date}`);
-            console.log(`Day Temp: ${toFahrenheit(day.dayTemp)}°F`);
-            console.log(`Night Temp: ${toFahrenheit(day.nightTemp)}°F`);
-            console.log(`Day: ${day.dayCondition}`);
-            console.log(`Night: ${day.nightCondition}`);
-            console.log('---');
-        });
-    } catch (error) {
-        console.error("Error logging weather data:", error);
-    }
+function logWeatherDataToServer(zip, location) {
+    fetch("http://178.128.148.67/lucus/Weather/weatherlog.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ zip, location })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === "success") {
+            console.log("Logged successfully. Insert ID:", data.insert_id);
+        } else {
+            console.error("Server error:", data.message);
+        }
+    })
+    .catch(error => console.error("Error storing weather data:", error));
 }
 
 module.exports = {
