@@ -64,7 +64,7 @@ function getWeatherData() {
         zip = encodeURIComponent(zip.trim());
 
         //Application retrieves weather data from PHP file containing API request
-        fetch(`http://178.128.148.67/lucus/Weather/weatherdata.php?zip=${zip}&country=us`)
+        fetch(`http://www.lucusdm.com/lucus/Weather/weatherdata.php?zip=${zip}&country=us`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Network response not ok.");
@@ -127,7 +127,7 @@ function updateHTML(dailyTemps) {
 }
 
 function logWeatherDataToServer(zip, location) {
-    fetch("http://178.128.148.67/lucus/Weather/weatherlog.php", {
+    fetch("http://www.lucusdm.com/lucus/Weather/weatherlog.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ zip, location })
