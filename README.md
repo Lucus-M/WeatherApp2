@@ -9,7 +9,7 @@ A web-based application that allows users to input a ZIP code and recieve a weat
 API used: OpenWeatherMap
 
 Security measures taken:
-Input Validation and Sanitization
-API Tokens hidden from frontend
-Unit testing
-Logging with Hashing & Encryption
+Input Validation and Sanitization, 
+API Tokens hidden from frontend, 
+Unit testing, 
+Logging with Hashing & Encryption, 
