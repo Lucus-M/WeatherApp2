@@ -72,7 +72,7 @@ function getWeatherData() {
                 console.log("success!!!!!!!")
                 return response.json();
             })
-            .then(data => processWeatherData(data))
+            .then(data => processWeatherData(data, zip))
             .catch(error => {
                 alert("Unable to fetch weather data. Please try again later.");
                 console.error("There was a problem with the fetch operation:", error);
@@ -84,7 +84,7 @@ function getWeatherData() {
 }
 
 // Process and extract weather data
-function processWeatherData(data) {
+function processWeatherData(data, zip) {
     try {
         console.log(data); // Output data to console
         
@@ -102,7 +102,7 @@ function processWeatherData(data) {
             };
             dailyTemps.push(dayData);
         }
-    
+
         logWeatherDataToServer(zip, data.city.name);
         updateHTML(dailyTemps);
     } catch (error) {
