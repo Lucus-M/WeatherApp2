@@ -106,6 +106,7 @@ function processWeatherData(data, zip) {
         logWeatherDataToServer(zip, data.city.name);
         updateHTML(dailyTemps);
     } catch (error) {
+        // alerts user if the data is not valid, likely because the zip code passed validation but does not exist
         alert("Error obtaining weather data, please enter a valid zip code.");
         console.error("Error processing weather data");
     }
@@ -126,6 +127,22 @@ function updateHTML(dailyTemps) {
     }
 }
 
+function logWeatherData(dailyTemps) {
+    try {
+        dailyTemps.forEach(day => {
+            console.log(`Date: ${day.date}`);
+            console.log(`Day Temp: ${toFahrenheit(day.dayTemp)}°F`);
+            console.log(`Night Temp: ${toFahrenheit(day.nightTemp)}°F`);
+            console.log(`Day: ${day.dayCondition}`);
+            console.log(`Night: ${day.nightCondition}`);
+            console.log('---');
+        });
+    } catch (error) {
+        console.error("Error logging weather data:", error);
+    }
+}
+
+// log zip code and location to database stored in server
 function logWeatherDataToServer(zip, location) {
     console.log(zip, location)
     fetch("http://www.lucusdm.com/lucus/Weather/weatherlog.php", {
