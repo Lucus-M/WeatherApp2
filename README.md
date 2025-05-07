@@ -2,6 +2,8 @@
 
 Weather App
 
+Demo at http://www.lucusdm.com/lucus/WeatherApp2/
+
 A web-based application that allows users to input a ZIP code and recieve a weather forecast for 3 days, for day and night.
 
 API used: OpenWeatherMap
