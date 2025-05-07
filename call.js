@@ -132,19 +132,7 @@ function logWeatherDataToServer(zip, location) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ zip, location })
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.text(); // Get raw text first
-    })
-    .then(text => {
-        if (text) {
-            return JSON.parse(text); // Parse JSON only if text is not empty
-        } else {
-            throw new Error("Empty response body");
-        }
-    })
+    .then(response => response.json())
     .then(data => {
         if (data.status === "success") {
             console.log("Logged successfully.");
