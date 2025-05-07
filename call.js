@@ -135,7 +135,7 @@ function logWeatherDataToServer(zip, location) {
     .then(response => response.json())
     .then(data => {
         if (data.status === "success") {
-            console.log("Logged successfully. Insert ID:", data.insert_id);
+            console.log("Logged successfully.");
         } else {
             console.error("Server error:", data.message);
         }
