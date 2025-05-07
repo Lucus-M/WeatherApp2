@@ -10,3 +10,4 @@ Security measures taken:
 Input Validation and Sanitization
 API Tokens hidden from frontend
 Unit testing
+Logging with Hashing & Encryption
