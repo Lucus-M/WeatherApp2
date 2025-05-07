@@ -127,7 +127,7 @@ function updateHTML(dailyTemps) {
 }
 
 function logWeatherDataToServer(zip, location) {
-    fetch("http://178.128.148.67/lucus/Weather/weatherlog.php", {
+    fetch("http://www.lucusdm.com/lucus/Weather/weatherlog.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ zip, location })
